@@ -5,21 +5,6 @@ import './resposta.dart';
 main () => runApp(PerguntaApp());
 
 class _PerguntaAppState extends State<PerguntaApp> {
-  
-  final perguntas = [
-    {
-      'texto': 'Qual seu animal favorito?',
-      'resposta': ['Cachorro', 'Gato', 'Papagaio', 'Tatu']
-    },
-    {
-      'texto': 'Qual sua cor favorita?',
-      'resposta': ['Vermelho', 'Azul', 'Branco', 'Preto']
-    },
-    {
-      'texto': 'Qual sua comida favorita?',
-      'resposta': ['Macarrão', 'Hambúrguer', 'Pizza', 'Sushi']
-    }
-  ];
 
   var _perguntaSelecionada = 0;
   
@@ -33,6 +18,27 @@ class _PerguntaAppState extends State<PerguntaApp> {
   @override
   Widget build (BuildContext context) {
     
+    final perguntas = [
+      {
+        'texto': 'Qual seu animal favorito?',
+        'resposta': ['Cachorro', 'Gato', 'Papagaio', 'Tatu']
+      },
+      {
+        'texto': 'Qual sua cor favorita?',
+        'resposta': ['Vermelho', 'Azul', 'Branco', 'Preto']
+      },
+      {
+        'texto': 'Qual sua comida favorita?',
+        'resposta': ['Macarrão', 'Hambúrguer', 'Pizza', 'Sushi']
+      },
+    ];
+
+    List<Widget> respostas = [];
+
+    for(String testoResp in perguntas[_perguntaSelecionada].cast() ['resposta']) {
+      respostas.add(Resposta(testoResp, _responder));
+    }
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -41,9 +47,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
         body: Column(
           children: <Widget>[
             Questao(perguntas[_perguntaSelecionada] ['texto'].toString()),
-            Resposta('Resposta 1', _responder),
-            Resposta('Resposta 2', _responder),
-            Resposta('Resposta 3', _responder)
+            ...respostas
           ],
         ),
       ),
