@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 import './questao.dart';
+import './resposta.dart';
 
 main () => runApp(PerguntaApp());
 
 class _PerguntaAppState extends State<PerguntaApp> {
   
-  final perguntas = ['Qual seu animal favorito?', 'Qual sua cor favorita?'];
+  final perguntas = [
+    {
+      'texto': 'Qual seu animal favorito?',
+      'resposta': ['Cachorro', 'Gato', 'Papagaio', 'Tatu']
+    },
+    {
+      'texto': 'Qual sua cor favorita?',
+      'resposta': ['Vermelho', 'Azul', 'Branco', 'Preto']
+    },
+    {
+      'texto': 'Qual sua comida favorita?',
+      'resposta': ['Macarrão', 'Hambúrguer', 'Pizza', 'Sushi']
+    }
+  ];
 
   var _perguntaSelecionada = 0;
   
@@ -26,19 +40,10 @@ class _PerguntaAppState extends State<PerguntaApp> {
         ),
         body: Column(
           children: <Widget>[
-            Questao(perguntas[_perguntaSelecionada]),
-            ElevatedButton(
-              child: const Text('Resposta 1'),
-              onPressed: (_responder)
-            ),
-            ElevatedButton(
-              child: const Text('Resposta 2'),
-              onPressed: (_responder)
-            ),
-            ElevatedButton(
-              child: const Text('Resposta 3'),
-              onPressed: (_responder)
-            )
+            Questao(perguntas[_perguntaSelecionada] ['texto'].toString()),
+            Resposta('Resposta 1', _responder),
+            Resposta('Resposta 2', _responder),
+            Resposta('Resposta 3', _responder)
           ],
         ),
       ),
