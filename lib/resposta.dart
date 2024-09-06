@@ -5,15 +5,15 @@ class Resposta extends StatelessWidget {
   final void Function () quandoSelecionado;
   
   final String texto;
-  Resposta(this.texto, this.quandoSelecionado);
+  const Resposta(this.texto, this.quandoSelecionado, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: FilledButton(
         onPressed: quandoSelecionado,
-        style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.green)),
+        style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Color.fromARGB(255, 35, 90, 229))),
         child: Text(texto),
       ),
     );
